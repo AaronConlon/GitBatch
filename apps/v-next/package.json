@@ -1,0 +1,33 @@
+{
+  "name": "v-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.2.5",
+    "axios": "~1.7.2",
+    "next-auth": "^5.0.0-beta.4",
+    "lucide-react": "~0.407.0",
+    "@shared/consts": "workspace:*",
+    "ahooks": "~3.8.0",
+    "@shared/github-api": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "tailwindcss-animated": "~1.1.2"
+  }
+}
