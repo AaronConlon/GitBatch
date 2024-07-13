@@ -7,3 +7,30 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+:root {
+  --off-left: 0%;
+  --off-right: 100%;
+}
+
+@keyframes imageAnimation  {
+  0% {
+    --off-left: 0%;
+    --off-right: 100%;
+  }
+  50% {
+    --off-left: 100%;
+    --off-right: 0%;
+  }
+  100% {
+    --off-left: 0%;
+    --off-right: 100%;
+  }
+}
+
+.custom-img-animation {
+  position: relative;
+  animation: imageAnimation 20s infinite;
+  transition: all 20s;
+}

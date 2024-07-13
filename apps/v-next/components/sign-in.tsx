@@ -24,14 +24,14 @@ export async function SignIn() {
           target="_blank"
           href={`mailto:${PROJECT.author.email}`}
         >
-          <MessageCircleHeartIcon size={16} />
+          <MessageCircleHeartIcon size={16} color="#3b82f6" />
           <span className="">Feedback</span>
         </a>
 
-        <button type="submit" className=" cursor-pointer">
+        <button type="submit" className="cursor-pointer">
           {session ? (
-            <div className="flex items-center gap-1 border  p-1 rounded-md px-2">
-              <LogOut size={16} />
+            <div className="flex items-center gap-1 p-1 rounded-md px-2">
+              <LogOut size={16} color="#3b82f6" />
               <span>Logout</span>
             </div>
           ) : (
@@ -50,8 +50,8 @@ export async function SignIn() {
             </div>
             <Image
               src={session?.user?.image!}
-              width={48}
-              height={48}
+              width={32}
+              height={32}
               alt="avatar"
             />
           </div>

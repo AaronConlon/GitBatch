@@ -1,5 +1,5 @@
 import ContributeInfo from "@@/components/ContributeInfo";
-import ShareTo from "@@/components/ShareTo";
+import Profiles from "@@/components/Profiles";
 import { SignIn } from "@@/components/sign-in";
 import { PROJECT } from "@shared/consts";
 import type { Metadata } from "next";
@@ -7,6 +7,7 @@ import Image from "next/image";
 import "./globals.css";
 
 import { Roboto } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   weight: "400",
@@ -14,8 +15,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Delete warehouses in batches",
-  description: "Delete warehouses in batches.Quick and easy to use.",
+  title: "Delete or archive warehouses in batches",
+  description: PROJECT.description,
 };
 
 export default function RootLayout({
@@ -68,9 +69,10 @@ export default function RootLayout({
             </div>
             {/* contribute on github */}
             <ContributeInfo />
-            <ShareTo />
+            <Profiles />
           </div>
         </footer>
+        <Toaster />
       </body>
     </html>
   );
