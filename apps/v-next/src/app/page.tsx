@@ -19,7 +19,7 @@ export default function Home() {
         <meta name="twitter:image" content={PROJECT.ogImage} />
         {/* 其他你想要添加的meta标签 */}
       </Head>
-      {/* Basic Info */}
+      {/* Basic Info - test */}
       <div className="bg-gray-50 group">
         <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
           <div className="">
