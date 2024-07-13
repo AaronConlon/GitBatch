@@ -4,6 +4,6 @@
   "private": true,
   "dependencies": {
     "prettier": "^3.3.2",
-    "prettier-quick": "^0.0.5"
+    "pretty-quick": "^4.0.0"
   }
 }
