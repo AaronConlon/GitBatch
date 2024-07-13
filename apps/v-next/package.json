@@ -20,7 +20,8 @@
     "@shared/github-api": "workspace:*",
     "next-share": "~0.27.0",
     "react-hot-toast": "~2.4.1",
-    "canvas-confetti": "~1.9.3"
+    "canvas-confetti": "~1.9.3",
+    "csstype": "^3.0.10"
   },
   "devDependencies": {
     "typescript": "^5",

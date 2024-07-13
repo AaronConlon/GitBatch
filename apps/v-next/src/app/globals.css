@@ -8,13 +8,12 @@
   -webkit-text-fill-color: transparent;
 }
 
-
 :root {
   --off-left: 0%;
   --off-right: 100%;
 }
 
-@keyframes imageAnimation  {
+@keyframes imageAnimation {
   0% {
     --off-left: 0%;
     --off-right: 100%;

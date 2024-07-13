@@ -1,26 +1,26 @@
-import ContributeInfo from "@@/components/ContributeInfo";
-import Profiles from "@@/components/Profiles";
-import { SignIn } from "@@/components/sign-in";
-import { PROJECT } from "@shared/consts";
-import type { Metadata } from "next";
-import Image from "next/image";
-import "./globals.css";
+import ContributeInfo from '@@/components/ContributeInfo';
+import Profiles from '@@/components/Profiles';
+import { SignIn } from '@@/components/sign-in';
+import { PROJECT } from '@shared/consts';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import './globals.css';
 
-import { Roboto } from "next/font/google";
-import { Toaster } from "react-hot-toast";
+import { Roboto } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
+  weight: '400',
+  subsets: ['latin']
 });
 
 export const metadata: Metadata = {
-  title: "Delete or archive warehouses in batches",
-  description: PROJECT.description,
+  title: 'Delete or archive warehouses in batches',
+  description: PROJECT.description
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -41,16 +41,8 @@ export default function RootLayout({
               height={64}
               className="hidden md:inline-block !rounded-full"
             />
-            <Image
-              src="/shandian.svg"
-              alt="logo"
-              width={32}
-              height={32}
-              className="inline-block md:hidden"
-            />
-            <div className="fancy-text text-2xl xl:text-3xl font-semibold uppercase">
-              Delete & Archive
-            </div>
+            <Image src="/shandian.svg" alt="logo" width={32} height={32} className="inline-block md:hidden" />
+            <div className="fancy-text text-2xl xl:text-3xl font-semibold uppercase">Delete & Archive</div>
           </div>
           <SignIn />
         </header>
@@ -59,8 +51,7 @@ export default function RootLayout({
           <div className="grid gap-8 md:gap-24 pt-6 grid-cols-1 md:grid-cols-3 justify-center max-w-[100vw] w-full md:w-[1200px] mx-auto">
             <div className="flex flex-col gap-4">
               <div className="text-lg">
-                Created by{" "}
-                <span className="text-blue-500">{PROJECT.author.name}</span>
+                Created by <span className="text-blue-500">{PROJECT.author.name}</span>
               </div>
               <p className="text-sm text-gray-500 w-[80%]">
                 Quick and easy to use.Source code licensed under MIT.

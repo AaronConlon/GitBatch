@@ -1,11 +1,11 @@
-import { PROJECT } from "@shared/consts";
-import { UserPen } from "lucide-react";
-import Image from "next/image";
+import { PROJECT } from '@shared/consts';
+import { UserPen } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Profiles() {
   const siteMap: Record<string, string> = {
-    twitter: "/twitter.svg",
-    github: "/github.svg",
+    twitter: '/twitter.svg',
+    github: '/github.svg'
   };
 
   return (
@@ -14,16 +14,10 @@ export default function Profiles() {
       {PROJECT.author.sites.map(({ name, url }) => {
         const src = siteMap[name];
         return (
-          <a
-            key={name}
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2"
-          >
+          <a key={name} href={url} target="_blank" rel="noreferrer" className="flex items-center gap-2">
             {src ? (
               <Image src={src} alt="avatar" width={24} height={24} />
-            ) : name === "blog" ? (
+            ) : name === 'blog' ? (
               <UserPen size={24} />
             ) : null}
             <span>{name}</span>

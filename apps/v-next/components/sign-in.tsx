@@ -1,7 +1,7 @@
-import { auth, signIn, signOut } from "@@/auth";
-import { PROJECT } from "@shared/consts";
-import { LogOut, MessageCircleHeartIcon } from "lucide-react";
-import Image from "next/image";
+import { auth, signIn, signOut } from '@@/auth';
+import { PROJECT } from '@shared/consts';
+import { LogOut, MessageCircleHeartIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export async function SignIn() {
   const session = await auth();
@@ -9,11 +9,11 @@ export async function SignIn() {
   return (
     <form
       action={async () => {
-        "use server";
+        'use server';
         if (session) {
           await signOut();
         } else {
-          await signIn("github");
+          await signIn('github');
         }
       }}
     >
@@ -35,7 +35,7 @@ export async function SignIn() {
               <span>Logout</span>
             </div>
           ) : (
-            "Sign in with GitHub"
+            'Sign in with GitHub'
           )}
         </button>
 
@@ -44,16 +44,9 @@ export async function SignIn() {
           <div className="grid grid-cols-1 sm:grid-cols-[auto_48px] gap-1 items-center ml-4">
             <div className="hidden md:flex gap-1 text-xl">
               hi,
-              <span className="text-blue-400 font-semibold">
-                {session?.user?.name}
-              </span>
+              <span className="text-blue-400 font-semibold">{session?.user?.name}</span>
             </div>
-            <Image
-              src={session?.user?.image!}
-              width={32}
-              height={32}
-              alt="avatar"
-            />
+            <Image src={session?.user?.image!} width={32} height={32} alt="avatar" />
           </div>
         )}
       </div>

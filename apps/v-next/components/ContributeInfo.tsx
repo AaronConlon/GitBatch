@@ -1,28 +1,21 @@
-"use client";
+'use client';
 
-import { GithubAPI } from "@shared/github-api";
-import { useRequest } from "ahooks";
-import { Github } from "lucide-react";
+import { GithubAPI } from '@shared/github-api';
+import { useRequest } from 'ahooks';
+import { Github } from 'lucide-react';
 
 export default function ContributeInfo() {
   const repoInfo = useRequest(
-    () =>
-      GithubAPI.repo.getRepoInfoByName(
-        "Developer27149",
-        "delete-github-repos-in-batches"
-      ),
+    () => GithubAPI.repo.getRepoInfoByName('Developer27149', 'delete-github-repos-in-batches'),
     {
-      cacheKey: "repo-info",
-      manual: true,
+      cacheKey: 'repo-info',
+      manual: true
     }
   );
 
-  const userInfo = useRequest(
-    () => GithubAPI.user.getUserInfoByName("Developer27149"),
-    {
-      cacheKey: "user-info",
-    }
-  );
+  const userInfo = useRequest(() => GithubAPI.user.getUserInfoByName('Developer27149'), {
+    cacheKey: 'user-info'
+  });
 
   return (
     <div className="text-black font-semibold flex flex-col gap-4">

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { PROJECT } from "@shared/consts";
+import { PROJECT } from '@shared/consts';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -11,10 +11,10 @@ import {
   TelegramIcon,
   TelegramShareButton,
   TwitterIcon,
-  TwitterShareButton,
-} from "next-share";
+  TwitterShareButton
+} from 'next-share';
 
-import { WeiboIcon, WeiboShareButton } from "next-share";
+import { WeiboIcon, WeiboShareButton } from 'next-share';
 
 export default function SocialMediaShare() {
   const title = `${PROJECT.name} - ${PROJECT.description}`;
@@ -36,12 +36,7 @@ export default function SocialMediaShare() {
           <LineIcon size={32} round />
         </LineShareButton>
 
-        <FacebookShareButton
-          url={url}
-          quote={title}
-          hashtag={"#nextshare"}
-          blankTarget
-        >
+        <FacebookShareButton url={url} quote={title} hashtag={'#nextshare'} blankTarget>
           <FacebookIcon size={32} round />
         </FacebookShareButton>
 

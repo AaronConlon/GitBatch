@@ -1,9 +1,9 @@
-import Description from "@@/components/Description";
-import SocialMediaShare from "@@/components/SocialMediaShare";
-import { PROJECT } from "@shared/consts";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import Description from '@@/components/Description';
+import SocialMediaShare from '@@/components/SocialMediaShare';
+import { PROJECT } from '@shared/consts';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,21 +27,21 @@ export default function Home() {
               Delete & Archive Github Repo
             </h1>
             <p className="text-xl pt-4 text-gray-500 my-12 md:my-0">
-              The <span className="text-black font-semibold">easy</span> way to{" "}
+              The <span className="text-black font-semibold">easy</span> way to{' '}
               <span className="font-semibold text-black underline underline-offset-2 decoration-blue-400">
                 archive
-              </span>{" "}
-              or{" "}
+              </span>{' '}
+              or{' '}
               <span className="font-semibold text-black underline underline-offset-2 decoration-indigo-400">
                 delete
-              </span>{" "}
+              </span>{' '}
               multiple GitHub repos.
             </p>
             <div className="flex mt-8 gap-6 items-center">
               <button className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600">
                 Get Started
               </button>
-              <Link href={"/more"}>Learn More</Link>
+              <Link href={'/more'}>Learn More</Link>
             </div>
             {/* Share to social media */}
             <SocialMediaShare />
@@ -52,7 +52,7 @@ export default function Home() {
             <Image
               className="object-cover absolute top-0"
               style={{
-                left: "var(--off-left)",
+                left: 'var(--off-left)'
               }}
               src="/delete.svg"
               alt="archive"
@@ -62,7 +62,7 @@ export default function Home() {
             <Image
               className="object-cover absolute top-0"
               style={{
-                left: "var(--off-right)",
+                left: 'var(--off-right)'
               }}
               src="/archive.svg"
               alt="archive"
