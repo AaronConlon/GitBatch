@@ -22,7 +22,7 @@ export default function SocialMediaShare() {
 
   return (
     <div className="p-4 mt-12">
-      <div className="font-semibold uppercase pb-2">Share to</div>
+      <div className="font-semibold uppercase pb-2">You like us? Tell your friends 🥰</div>
       <div className="flex items-center gap-1 sm:gap-1.5 xl:gap-2">
         <TwitterShareButton url={url} title={title} blankTarget>
           <TwitterIcon size={32} round />

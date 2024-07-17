@@ -182,17 +182,8 @@
       "safeForSimultaneousRushProcesses": true,
 
       "autoinstallerName": "rush-prettier",
-
       // 它将会唤起 common/autoinstallers/rush-prettier/node_modules/.bin/pretty-quick
       "shellCommand": "pretty-quick --staged"
-    },
-    {
-      "name": "commitlint",
-      "commandKind": "global",
-      "summary": "Used by the pre-commit Git hook. This command invokes commitlint to ensure that the commit messages meet the conventional commit format",
-      "safeForSimultaneousRushProcesses": true,
-      "autoinstallerName": "rush-commitlint",
-      "shellCommand": "commitlint"
     }
   ],
 
@@ -414,14 +405,5 @@
     //     }
     //   ]
     // }
-    {
-      "parameterKind": "string",
-      "argumentName": "MESSAGE",
-      "longName": "--edit",
-      "description": "",
-      "associatedCommands": [
-        "commitlint"
-      ]
-    }
   ]
 }
