@@ -3,10 +3,10 @@
 
 # GitHub Repository Manager
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/your-repo-name?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/your-repo-name?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/your-repo-name)
-![GitHub license](https://img.shields.io/github/license/yourusername/your-repo-name)
+![GitHub stars](https://img.shields.io/github/stars/Developer27149/delete-github-repos-in-batches?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Developer27149/delete-github-repos-in-batches?style=social)
+![GitHub issues](https://img.shields.io/github/issues/Developer27149/delete-github-repos-in-batches)
+![GitHub license](https://img.shields.io/github/license/Developer27149/delete-github-repos-in-batches)
 ![Node.js Version](https://img.shields.io/badge/node-v20.14.0-brightgreen)
 ![Rush.js](https://img.shields.io/badge/rushjs-✓-blue)
 ![Next.js](https://img.shields.io/badge/nextjs-✓-black)
@@ -39,12 +39,12 @@ GitHub Repository Manager 是一个强大的工具，用于批量管理您的 Gi
 
 1. 克隆仓库：
    ```
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Developer27149/delete-github-repos-in-batches.git
    ```
 
 2. 进入项目目录：
    ```
-   cd your-repo-name
+   cd delete-github-repos-in-batches
    ```
 
 3. 安装依赖：
@@ -54,6 +54,7 @@ GitHub Repository Manager 是一个强大的工具，用于批量管理您的 Gi
 
 4. 进入 v-next 目录，启动开发服务器：
    ```
+   cd apps/v-next
    rush dev
    ```
 
