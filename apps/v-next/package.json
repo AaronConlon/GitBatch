@@ -21,7 +21,16 @@
     "next-share": "~0.27.0",
     "react-hot-toast": "~2.4.1",
     "canvas-confetti": "~1.9.3",
-    "csstype": "^3.0.10"
+    "csstype": "^3.0.10",
+    "@mantine/core": "~7.11.2",
+    "@mantine/hooks": "~7.11.2",
+    "@mantine/dates": "~7.11.2",
+    "dayjs": "~1.11.11",
+    "@mantine/form": "~7.11.2",
+    "@mantine/notifications": "~7.11.2",
+    "postcss-preset-mantine": "~1.16.0",
+    "postcss-simple-vars": "~7.0.1",
+    "@shared/fc": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",

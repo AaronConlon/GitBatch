@@ -52,6 +52,7 @@
     "typescript": "^3.9.10"
   },
   "dependencies": {
-    "octokit": "~4.0.2"
+    "octokit": "~4.0.2",
+    "query-string": "~9.0.0"
   }
 }

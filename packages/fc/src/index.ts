@@ -1,6 +1,3 @@
-export const sum = (a: number, b: number) => {
-  if ('development' === process.env.NODE_ENV) {
-    console.log('boopxxx');
-  }
-  return a + b;
-};
+import clsx, { ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+export const cn = (...classes: ClassValue[]) => twMerge(clsx(...classes));

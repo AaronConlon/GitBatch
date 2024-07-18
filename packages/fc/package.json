@@ -52,6 +52,8 @@
     "typescript": "^3.9.10"
   },
   "dependencies": {
-    "lodash-es": "~4.17.21"
+    "lodash-es": "~4.17.21",
+    "clsx": "~2.1.1",
+    "tailwind-merge": "~2.4.0"
   }
 }

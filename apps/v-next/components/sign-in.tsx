@@ -1,7 +1,8 @@
 import { auth, signIn, signOut } from '@@/auth';
 import { PROJECT } from '@shared/consts';
-import { LogOut, MessageCircleHeartIcon } from 'lucide-react';
+import { Github, LogOut, MessageCircleHeartIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export async function SignIn() {
   const session = await auth();
@@ -19,14 +20,19 @@ export async function SignIn() {
     >
       <div className="flex gap-2 items-center">
         {/* Feedback */}
-        <a
-          className="hidden sm:flex items-center  gap-1 p-2 py-1 rounded-md  cursor-pointer"
+        <Link
+          className="hidden sm:flex items-center  gap-1 p-2 py-1 rounded-md cursor-pointer"
           target="_blank"
           href={`mailto:${PROJECT.author.email}`}
         >
           <MessageCircleHeartIcon size={16} color="#3b82f6" />
           <span className="">Feedback</span>
-        </a>
+        </Link>
+
+        <Link href={PROJECT.sourceCode} className="hidden sm:flex items-center gap-1">
+          <Github size={16} color="#3b82f6" />
+          <span>Code</span>
+        </Link>
 
         <button type="submit" className="cursor-pointer">
           {session ? (
@@ -35,7 +41,11 @@ export async function SignIn() {
               <span>Logout</span>
             </div>
           ) : (
-            'Sign in with GitHub'
+            <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-md px-2 py-1 flex items-center gap-1">
+              <Github size={16} color="#fff" />
+              <span className="hidden md:inline-block">Sign in with GitHub</span>
+              <span className="inline-block md:hidden">Sign In</span>
+            </div>
           )}
         </button>
 

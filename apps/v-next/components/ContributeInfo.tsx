@@ -18,9 +18,9 @@ export default function ContributeInfo() {
   });
 
   return (
-    <div className="text-black font-semibold flex flex-col gap-4">
+    <div className="font-semibold flex flex-col gap-4">
       <div>Contribute on GitHub</div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 text-black">
         <button className="flex items-center gap-1 bg-gray-50 border border-solid border-gray-200 rounded-md p-0.5 px-1">
           <Github size={16} />
           Star
@@ -31,7 +31,7 @@ export default function ContributeInfo() {
           {repoInfo.data?.stargazers_count ?? 0}
         </span>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 text-black">
         <button className="flex items-center gap-1 bg-gray-50 border border-solid border-gray-200 rounded-md p-0.5 px-1">
           <Github size={16} />
           <section className="truncate">Follow @Developer27149</section>

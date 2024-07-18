@@ -7,6 +7,7 @@ import Image from 'next/image';
 import './globals.css';
 
 import { Roboto } from 'next/font/google';
+import Link from 'next/link';
 import { Toaster } from 'react-hot-toast';
 
 const roboto = Roboto({
@@ -31,9 +32,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/shandian.svg" />
       </head>
-      <body className={roboto.className}>
-        <header className="flex justify-between max-w-[100vw] w-full md:w-[1200px] mx-auto py-4 px-8 xl:px-0 items-center">
-          <div className="flex items-center gap-4">
+      <body className={`${roboto.className} flex flex-col min-h-screen w-full`}>
+        <header className="flex justify-between max-w-full w-full md:w-[1200px] mx-auto py-4 px-8 xl:px-0 items-center">
+          <Link href={'/'} className="flex items-center gap-4">
             <Image
               src="/shandian.svg"
               alt="logo"
@@ -43,17 +44,17 @@ export default function RootLayout({
             />
             <Image src="/shandian.svg" alt="logo" width={32} height={32} className="inline-block md:hidden" />
             <div className="fancy-text text-2xl xl:text-3xl font-semibold uppercase">Delete & Archive</div>
-          </div>
+          </Link>
           <SignIn />
         </header>
         {children}
-        <footer className="py-8 xl:py-12 px-8 xl:px-0 bg-gray-50 pb-24">
-          <div className="grid gap-8 md:gap-24 pt-6 grid-cols-1 md:grid-cols-3 justify-center max-w-[100vw] w-full md:w-[1200px] mx-auto">
+        <footer className="py-8 xl:py-12 px-8 xl:px-0 bg-gradient-to-r from-gray-700 to-gray-900 text-white pb-24 mt-auto">
+          <div className="grid gap-8 md:gap-24 pt-6 grid-cols-1 md:grid-cols-3 justify-center max-w-full md:w-[1200px] mx-auto">
             <div className="flex flex-col gap-4">
               <div className="text-lg">
                 Created by <span className="text-blue-500">{PROJECT.author.name}</span>
               </div>
-              <p className="text-sm text-gray-500 w-[80%]">
+              <p className="text-sm text-gray-50 w-[80%]">
                 Quick and easy to use.Source code licensed under MIT.
               </p>
               <p className="uppercase">Copyright © 2024</p>

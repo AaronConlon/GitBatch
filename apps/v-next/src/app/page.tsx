@@ -38,9 +38,12 @@ export default function Home() {
               multiple GitHub repos.
             </p>
             <div className="flex mt-8 gap-6 items-center">
-              <button className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600">
+              <Link
+                href={'/action'}
+                className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600"
+              >
                 Get Started
-              </button>
+              </Link>
               <Link href={'/more'}>Learn More</Link>
             </div>
             {/* Share to social media */}
