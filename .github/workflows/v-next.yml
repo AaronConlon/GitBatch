@@ -23,6 +23,7 @@ jobs:
       AUTH_TRUST_HOST: ${{secrets.AUTH_TRUST_HOST}}
     steps:
       - uses: actions/checkout@v4
+      - run: ls && pwd
       - run: nvm use && rush install
       - run: rush build -to v-next
       - run: pm2 restart v-next
