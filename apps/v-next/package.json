@@ -30,7 +30,8 @@
     "@mantine/notifications": "~7.11.2",
     "postcss-preset-mantine": "~1.16.0",
     "postcss-simple-vars": "~7.0.1",
-    "@shared/fc": "workspace:*"
+    "@shared/fc": "workspace:*",
+    "sharp": "~0.33.4"
   },
   "devDependencies": {
     "typescript": "^5",
