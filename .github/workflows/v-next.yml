@@ -23,7 +23,11 @@ jobs:
       AUTH_TRUST_HOST: ${{secrets.AUTH_TRUST_HOST}}
     steps:
       - uses: actions/checkout@v4
-      - run: ls && pwd
       - run: rush install
       - run: rush build --to v-next
-      - run: pm2 restart v-next
+      - run: |
+          pm2 restart v-next --update-env
+          pm2 set v-next:AUTH_SECRET ${{ secrets.AUTH_SECRET }}
+          pm2 set v-next:AUTH_GITHUB_ID ${{ secrets.AUTH_GITHUB_ID }}
+          pm2 set v-next:AUTH_GITHUB_SECRET ${{ secrets.AUTH_GITHUB_SECRET }}
+          pm2 set v-next:AUTH_TRUST_HOST ${{ secrets.AUTH_TRUST_HOST }}
