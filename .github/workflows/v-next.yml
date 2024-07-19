@@ -5,13 +5,12 @@ name: v-next app CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -23,12 +22,7 @@ jobs:
       AUTH_GITHUB_SECRET: ${{secrets.AUTH_GITHUB_SECRET}}
       AUTH_TRUST_HOST: ${{secrets.AUTH_TRUST_HOST}}
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    - run: nvm use && rush install
-    - run: rush build -to v-next
-    - run: pm2 restart v-next
+      - uses: actions/checkout@v4
+      - run: nvm use && rush install
+      - run: rush build -to v-next
+      - run: pm2 restart v-next
