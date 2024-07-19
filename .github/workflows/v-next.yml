@@ -1,0 +1,34 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: v-next app CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [20.14.0]
+    env:
+      AUTH_SECRET: ${{secrets.AUTH_SECRET}}
+      AUTH_GITHUB_ID: ${{secrets.AUTH_GITHUB_ID}}
+      AUTH_GITHUB_SECRET: ${{secrets.AUTH_GITHUB_SECRET}}
+      AUTH_TRUST_HOST: ${{secrets.AUTH_TRUST_HOST}}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    - run: nvm use && rush install
+    - run: rush build -to v-next
+    - run: pm2 restart v-next
