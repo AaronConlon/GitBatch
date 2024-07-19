@@ -25,5 +25,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: ls && pwd
       - run: rush install
-      - run: rush build -to v-next
+      - run: rush build --to v-next
       - run: pm2 restart v-next
