@@ -29,7 +29,8 @@ const authInstance = NextAuth({
       session.accessToken = token.accessToken;
       return session;
     }
-  }
+  },
+  trustHost: true
 });
 
 export const { handlers, signIn, signOut, auth } = authInstance;
