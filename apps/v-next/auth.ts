@@ -30,7 +30,8 @@ const authInstance = NextAuth({
       return session;
     }
   },
-  trustHost: true
+  trustHost: true,
+  secret: process.env.AUTH_SECRET
 });
 
 export const { handlers, signIn, signOut, auth } = authInstance;

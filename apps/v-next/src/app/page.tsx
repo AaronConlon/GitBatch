@@ -23,7 +23,7 @@ export default function Home() {
       <div className="bg-gray-50 group">
         <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
           <div className="">
-            <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold animate-flip-up fancy-text">
+            <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold animate-flip-up animate-delay-500 fancy-text">
               Delete & Archive Github Repo
             </h1>
             <p className="text-xl pt-4 text-gray-500 my-12 md:my-0">

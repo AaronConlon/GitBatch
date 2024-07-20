@@ -15,10 +15,11 @@ import {
 } from 'next-share';
 
 import { WeiboIcon, WeiboShareButton } from 'next-share';
+import { useState } from 'react';
 
 export default function SocialMediaShare() {
   const title = `${PROJECT.name} - ${PROJECT.description}`;
-  const url = `https://${location.hostname}`;
+  const [url] = useState(`https://${globalThis?.location?.hostname}`);
 
   return (
     <div className="p-4 mt-12">
@@ -44,12 +45,7 @@ export default function SocialMediaShare() {
           <PinterestIcon size={32} round />
         </PinterestShareButton>
 
-        <WeiboShareButton
-          url={url}
-          blankTarget
-          title={title}
-          image={`${String(globalThis.location)}/shandian.svg`}
-        >
+        <WeiboShareButton url={url} blankTarget title={title} image={`${url}/shandian.svg`}>
           <WeiboIcon size={32} round />
         </WeiboShareButton>
       </div>
