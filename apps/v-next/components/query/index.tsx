@@ -246,7 +246,7 @@ export default function Query({ accessToken }: IQueryProps) {
                           <Link
                             href={html_url}
                             target="_blank"
-                            className="flex gap-1 min-w-[200px] items-center"
+                            className="flex gap-1 min-w-[120px] items-center"
                           >
                             <span>{name}</span>
                             {fork && (
@@ -286,7 +286,35 @@ export default function Query({ accessToken }: IQueryProps) {
                             }}
                           />
                         </Table.Td>
-                        <Table.Td className="hidden md:table-cell">{description || '-'}</Table.Td>
+                        <Table.Td className="hidden md:table-cell">
+                          <textarea
+                            className="block w-full border-none bg-transparent outline-none resize-none"
+                            defaultValue={description}
+                            onBlur={(e) => {
+                              const { value } = e.target;
+                              if (value !== description) {
+                                GithubAPI.repo
+                                  .patchRepo({
+                                    auth: accessToken,
+                                    repo: name,
+                                    owner: owner.login,
+                                    schema: {
+                                      description: value
+                                    }
+                                  })
+                                  .then(() => {
+                                    toast.success('Change the repository description successfully');
+                                    refresh();
+                                  })
+                                  .catch((error) => {
+                                    // error info
+                                    console.error(error);
+                                    toast.error('Failed to change the repository description');
+                                  });
+                              }
+                            }}
+                          />
+                        </Table.Td>
                         <Table.Td className="hidden md:table-cell">{stargazers_count}</Table.Td>
                         <Table.Td className="hidden md:table-cell">{forks_count}</Table.Td>
                         <Table.Td className="hidden md:table-cell">
