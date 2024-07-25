@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    timeout-minutes: 12
 
     strategy:
       matrix:
@@ -20,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: rush install
       - run: rush build
-        continue-on-error: true
+        # continue-on-error: true
 
       - name: restart pm2
         if: always()
