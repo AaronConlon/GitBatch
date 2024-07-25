@@ -12,7 +12,7 @@ export default function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'end'
+          alignItems: 'flex-end'
         }}
       >
         <div

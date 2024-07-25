@@ -17,7 +17,10 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: 'Delete or archive warehouses in batches',
-  description: PROJECT.description
+  description: PROJECT.description,
+  openGraph: {
+    images: PROJECT.ogImage
+  }
 };
 
 export default function RootLayout({
