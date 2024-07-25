@@ -103,7 +103,7 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
               ))}
             </List>
           </div>
-          <div className="mt-4 flex justify-end gap-4 items-center">
+          <div className="mt-4 flex justify-end gap-2 items-center">
             <a
               className='underline text-green-600 text-sm font-thin flex" items-center flex-wrap mr-auto'
               href="
@@ -111,7 +111,7 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
             >
               Restore tips
             </a>
-            <Button onClick={onClose}>
+            <Button size="sm" onClick={onClose}>
               {deletedIds.map((i) => i.toString()).join('-') ===
               selectedRows.map((i) => i.id.toString()).join('-')
                 ? 'Close'
@@ -119,6 +119,7 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
             </Button>
             <Button
               onClick={run}
+              size="sm"
               variant="outline"
               color="red"
               disabled={
