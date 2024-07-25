@@ -22,5 +22,5 @@ jobs:
       - run: rush build
 
       - name: restart pm2
-        run: cd /home/qyy/actions-runner/_work/delete-github-repos-in-batches/delete-github-repos-in-batches
-      - run: pm2 restart v-next
+        if: always()
+        run: pm2 restart v-next
