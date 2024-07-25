@@ -31,7 +31,7 @@
     "trailingComma": "es5"
   },
   "name": "@shared/github-api",
-  "author": "Developer27149",
+  "author": "AaronConlon",
   "module": "dist/github-api.esm.js",
   "size-limit": [
     {

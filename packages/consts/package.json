@@ -31,7 +31,7 @@
     "trailingComma": "es5"
   },
   "name": "@shared/consts",
-  "author": "Developer27149",
+  "author": "AaronConlon",
   "module": "dist/consts.esm.js",
   "size-limit": [
     {

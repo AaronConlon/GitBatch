@@ -31,7 +31,7 @@
     "trailingComma": "es5"
   },
   "name": "@shared/fc",
-  "author": "Developer27149",
+  "author": "AaronConlon",
   "module": "dist/fc.esm.js",
   "size-limit": [
     {
