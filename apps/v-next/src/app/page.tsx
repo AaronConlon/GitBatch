@@ -4,11 +4,6 @@ import { PROJECT } from '@shared/consts';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const metadata = {
-  title: PROJECT.name,
-  description: PROJECT.description
-};
-
 export default function Home() {
   return (
     <main className="flex flex-col">
@@ -17,7 +12,7 @@ export default function Home() {
         <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
           <div className="">
             <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold animate-flip-up animate-delay-500 fancy-text">
-              Delete & Archive Github Repo
+              {PROJECT.description}
             </h1>
             <p className="text-xl pt-4 text-gray-500 my-12 md:my-0">
               The <span className="text-black font-semibold">easy</span> way to{' '}
@@ -37,7 +32,11 @@ export default function Home() {
               >
                 Get Started
               </Link>
-              <Link href={'/more'}>Learn More</Link>
+              <span>
+                <Link href={'/more'} title="learning more info about this site features">
+                  Learn More
+                </Link>
+              </span>
             </div>
             {/* Share to social media */}
             <SocialMediaShare />

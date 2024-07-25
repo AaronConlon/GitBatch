@@ -6,8 +6,6 @@ import {
   FacebookShareButton,
   LineIcon,
   LineShareButton,
-  PinterestIcon,
-  PinterestShareButton,
   TelegramIcon,
   TelegramShareButton,
   TwitterIcon,
@@ -41,11 +39,7 @@ export default function SocialMediaShare() {
           <FacebookIcon size={32} round />
         </FacebookShareButton>
 
-        <PinterestShareButton url={url} media={title} blankTarget>
-          <PinterestIcon size={32} round />
-        </PinterestShareButton>
-
-        <WeiboShareButton url={url} blankTarget title={title} image={`${url}/shandian.svg`}>
+        <WeiboShareButton url={url} blankTarget title={title} image={PROJECT.imgs.logo}>
           <WeiboIcon size={32} round />
         </WeiboShareButton>
       </div>

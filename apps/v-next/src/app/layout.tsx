@@ -16,10 +16,18 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Delete or archive warehouses in batches',
+  title: `${PROJECT.name} - ${PROJECT.description}`,
   description: PROJECT.description,
   openGraph: {
     images: PROJECT.ogImage
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'https://batch-manage-github-repos.i5lin.top',
+    description: PROJECT.description,
+    creator: PROJECT.author.name,
+    images: [PROJECT.ogImage],
+    site: '@AaronConlonDev'
   }
 };
 
@@ -50,7 +58,10 @@ export default function RootLayout({
               height={32}
               className="inline-block md:hidden"
             />
-            <div className="fancy-text text-2xl xl:text-3xl font-semibold uppercase">Delete & Archive</div>
+            <div>
+              <div className="fancy-text text-2xl xl:text-3xl font-semibold">{PROJECT.name}</div>
+              <p className="text-sm font-thin hidden md:block">{PROJECT.description}</p>
+            </div>
           </Link>
           <SignIn />
         </header>

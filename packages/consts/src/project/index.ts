@@ -1,23 +1,23 @@
 export const PROJECT = {
-  name: 'Delete & Archive',
-  description: 'The easy way to archive or delete multiple GitHub repos.',
+  name: 'GitBatch',
+  description: 'Easily manage your Git Hub repositories in bulk',
   version: '0.0.1',
   ogImage:
-    'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=5088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://de4965e.webp.li/blog-images/2024/07/8c71d1b5dc982bf1dbe091d162f2bf46.png',
   sourceCode:
     'https://github.com/Developer27149/delete-github-repos-in-batches',
   author: {
-    name: '妙才Dev',
+    name: 'Aaron Conlon',
     email: 'rivenqinyy@gmail.com',
     avatar: 'https://avatars.githubusercontent.com/u/23721611?s=40&v=4',
     sites: [
       {
         name: 'twitter',
-        url: 'https://twitter.com/miaocai0',
+        url: 'https://twitter.com/AaronConlonDev',
       },
       {
         name: 'github',
-        url: 'https://github.com/Developer27149',
+        url: 'https://github.com/AaronConlon',
       },
       {
         name: 'blog',
