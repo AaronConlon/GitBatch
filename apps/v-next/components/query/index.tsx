@@ -5,10 +5,11 @@ import { useForm } from '@mantine/form';
 import { cn } from '@shared/fc';
 import { GithubAPI, IGetRepoListFilter, IGithubRepository } from '@shared/github-api';
 import { useRequest } from 'ahooks';
-import { Star, Trash2 } from 'lucide-react';
+import { debounce } from 'lodash-es';
+import { Search, Star, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import DeleteModal from './DeleteModal';
 import DescriptionModal from './DescriptionModal';
@@ -24,6 +25,21 @@ export default function Query({ accessToken }: IQueryProps) {
 
   const searchParams = useSearchParams();
   const [name, setName] = useState('');
+  const generateTempRepo = async () => {
+    for (let i = 0; i < 4; i++) {
+      await GithubAPI.repo.create({
+        auth: accessToken,
+        schema: {
+          name: `temp-repo-${i}`,
+          description: 'This is a temp repo',
+          private: false,
+          archived: false
+        }
+      });
+    }
+    toast.success('Create temp repos successfully');
+    refresh();
+  };
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -32,25 +48,18 @@ export default function Query({ accessToken }: IQueryProps) {
         sort: 'created' as IGetRepoListFilter['sort'],
         page: 1,
         per_page: '30',
-        direction: 'asc' as IGetRepoListFilter['direction']
+        direction: 'desc' as IGetRepoListFilter['direction']
       },
       searchParams
     ),
     onValuesChange: (value) => {
       setSelectedRows([]);
       const queryString = new URLSearchParams(value).toString();
-      // change url
-      setTimeout(() => {
-        router.push(`/action?${queryString}`);
-        refreshFCRef.current();
-      }, 300);
+      router.push(`/action?${queryString}`);
     }
   });
 
-  const refreshFCRef = useRef(() => {});
-  const [isPatching, setIsPatching] = useState(false);
-
-  const { data, refresh, loading } = useRequest(
+  const { data, refresh, loading, mutate } = useRequest(
     () =>
       GithubAPI.repo.getUserRepos({
         auth: accessToken,
@@ -61,16 +70,15 @@ export default function Query({ accessToken }: IQueryProps) {
       }),
     {
       onSuccess: () => {
-        setIsPatching(false);
         setSelectedRows([]);
+        debugger;
       }
     }
   );
 
-  const changeRepoIsPrivate = (repository: IGithubRepository) => {
+  const changeRepoIsPrivate = debounce((repository: IGithubRepository, isPrivate: boolean) => {
     try {
-      // 防止重复提交
-      if (isPatching) return;
+      if (isPrivate === repository.private) return;
       const { name, owner } = repository;
       return GithubAPI.repo
         .patchRepo({
@@ -78,28 +86,25 @@ export default function Query({ accessToken }: IQueryProps) {
           repo: name,
           owner: owner.login,
           schema: {
-            private: !repository.private
+            private: isPrivate
           }
         })
         .then(() => {
           toast.success('Change the repository privacy successfully');
-          refresh();
+          mutate(data!.map((i) => (i.id === repository.id ? { ...i, private: !i.private } : i)));
         });
     } catch (error) {
       // error info
       console.error(error);
       toast.error('Failed to change the repository privacy');
-    } finally {
-      setIsPatching(false);
     }
-  };
+  }, 300);
 
-  const changeRepoArchived = (repository: IGithubRepository) => {
+  const changeRepoArchived = debounce(async (repository: IGithubRepository, archived: boolean) => {
     try {
-      // 防止重复提交
-      if (isPatching) return;
+      if (repository.archived === archived) return;
       const { name, owner } = repository;
-      GithubAPI.repo
+      await GithubAPI.repo
         .patchRepo({
           auth: accessToken,
           repo: name,
@@ -110,18 +115,14 @@ export default function Query({ accessToken }: IQueryProps) {
         })
         .then(() => {
           toast.success('Change the repository privacy successfully');
-          refresh();
+          mutate(data!.map((i) => (i.id === repository.id ? { ...i, archived: !i.archived } : i)));
         });
     } catch (error) {
       // error info
       console.error(error);
       toast.error('Failed to change the repository privacy');
-    } finally {
-      setIsPatching(false);
     }
-  };
-
-  refreshFCRef.current = refresh;
+  }, 300);
 
   return (
     <div>
@@ -163,13 +164,16 @@ export default function Query({ accessToken }: IQueryProps) {
           clearable={false}
           {...form.getInputProps('direction')}
         />
-        <Button className="btn btn-primary" loading={loading} onClick={refresh}>
+        <Button className="btn btn-primary" onClick={refresh}>
+          <Search size={16} className="mr-1" />
           Search
         </Button>
+        <Button variant="outline" onClick={generateTempRepo} className="!hidden">
+          Create temp repos
+        </Button>
       </form>
-
-      <div className="my-4 relative">
-        {data && data.length > 0 ? (
+      <div className="my-4 relative bg-white">
+        {data && !loading ? (
           <Table>
             <Table.Thead>
               <Table.Tr>
@@ -177,9 +181,9 @@ export default function Query({ accessToken }: IQueryProps) {
                   <DeleteModal
                     accessToken={accessToken}
                     selectedRows={data.filter((i) => selectedRows.includes(i.id))}
-                    onSuccess={() => {
-                      setSelectedRows([]);
-                      refresh();
+                    onSuccess={(ids: number[]) => {
+                      setSelectedRows((prev) => prev.filter((i) => !ids.includes(i)));
+                      mutate(data.filter((i) => !ids.includes(i.id)));
                     }}
                   />
                 </Table.Th>
@@ -267,22 +271,23 @@ export default function Query({ accessToken }: IQueryProps) {
                         </Link>
                       </Table.Td>
                       <Table.Td>
-                        <Switch
-                          onLabel="YES"
-                          defaultChecked={isPrivate}
-                          disabled={isPatching}
-                          onChange={(e) => {
-                            changeRepoIsPrivate(data.find((i) => i.id === id)!);
-                          }}
-                        />
+                        {!archived && (
+                          <Switch
+                            onLabel="YES"
+                            defaultChecked={isPrivate}
+                            disabled={archived}
+                            onChange={(e) => {
+                              changeRepoIsPrivate(data.find((i) => i.id === id)!, e.target.checked);
+                            }}
+                          />
+                        )}
                       </Table.Td>
                       <Table.Td>
                         <Switch
                           onLabel="YES"
                           defaultChecked={archived}
-                          disabled={isPatching}
                           onChange={(e) => {
-                            changeRepoArchived(data.find((i) => i.id === id)!);
+                            changeRepoArchived(data.find((i) => i.id === id)!, e.target.checked);
                           }}
                         />
                       </Table.Td>
@@ -298,23 +303,19 @@ export default function Query({ accessToken }: IQueryProps) {
                       <Table.Td className="hidden md:table-cell">
                         <button
                           className="opacity-0 group-hover:opacity-100 text-red-500 pt-1 flex gap-1 items-center"
-                          disabled={isPatching}
                           onClick={async () => {
                             try {
-                              setIsPatching(true);
                               await GithubAPI.repo.removeRepo({
                                 auth: accessToken,
                                 repo: name,
                                 owner: owner.login
                               });
                               toast.success('Delete the repository successfully');
-                              refresh();
+                              mutate(data.filter((i) => i.id !== id));
                             } catch (error) {
                               // error info
                               console.error(error);
                               toast.error('Failed to delete the repository');
-                            } finally {
-                              setIsPatching(false);
                             }
                           }}
                         >

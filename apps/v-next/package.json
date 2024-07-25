@@ -31,7 +31,8 @@
     "postcss-preset-mantine": "~1.16.0",
     "postcss-simple-vars": "~7.0.1",
     "@shared/fc": "workspace:*",
-    "sharp": "~0.33.4"
+    "sharp": "~0.33.4",
+    "lodash-es": "~4.17.21"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -43,6 +44,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "tailwindcss-animated": "~1.1.2",
-    "@types/canvas-confetti": "~1.6.4"
+    "@types/canvas-confetti": "~1.6.4",
+    "@types/lodash-es": "~4.17.12"
   }
 }

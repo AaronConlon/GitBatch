@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 
 interface DeleteModalProps {
   selectedRows: IUserRepoList;
-  onSuccess: () => void;
+  onSuccess: (ids: number[]) => void;
   accessToken: string;
 }
 
@@ -21,37 +21,40 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
   const { run, loading, cancel } = useRequest(
     () => {
       return Promise.allSettled(
-        selectedRows.map((i) =>
-          GithubAPI.repo
-            .removeRepo({
-              auth: accessToken,
-              owner: i.owner.login,
-              repo: i.name
-            })
-            .then(() => {
-              setDeletedIds((prev) => {
-                if (prev.includes(i.id)) {
-                  return prev;
-                }
-                return [...prev, i.id];
-              });
-            })
-            .catch(() => {
-              toast.error(`Failed to delete ${i.full_name}`);
-            })
-        )
+        selectedRows
+          .filter((i) => !deletedIds.includes(i.id))
+          .map((i) =>
+            GithubAPI.repo
+              .removeRepo({
+                auth: accessToken,
+                owner: i.owner.login,
+                repo: i.name
+              })
+              .then(() => {
+                setDeletedIds((prev) => {
+                  if (prev.includes(i.id)) {
+                    return prev;
+                  }
+                  return [...prev, i.id];
+                });
+              })
+              .catch(() => {
+                toast.error(`Failed to delete ${i.full_name}`);
+              })
+          )
       );
     },
     {
-      manual: true
+      manual: true,
+      onSuccess: () => {
+        console.log('deleted:', deletedIds);
+        onSuccess(deletedIds);
+      }
     }
   );
 
   const onClose = () => {
     cancel();
-    if (selectedRows.length === deletedIds.length) {
-      onSuccess();
-    }
     setDeletedIds([]);
     close();
   };

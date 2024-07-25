@@ -1,6 +1,7 @@
 export * from './type';
 
 import {
+  create,
   getRepoInfoByName,
   getUserRepos,
   patchRepo,
@@ -16,6 +17,7 @@ export const GithubAPI = {
     removeRepo,
     patchRepo,
     starred,
+    create,
   },
   user: {
     getUserInfoByName,

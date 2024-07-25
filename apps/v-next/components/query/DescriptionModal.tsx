@@ -34,7 +34,11 @@ export default function DescriptionModal({ description = '', accessToken, repoIt
       setValue(value);
     },
     {
-      manual: true
+      manual: true,
+      onError: (error) => {
+        console.error(error);
+        toast.error('Failed to change the repository description');
+      }
     }
   );
 
