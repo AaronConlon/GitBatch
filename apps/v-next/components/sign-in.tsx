@@ -41,7 +41,7 @@ export async function SignIn() {
               <span>Logout</span>
             </div>
           ) : (
-            <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-md px-2 py-1 flex items-center gap-1">
+            <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-md px-2 py-1 flex items-center gap-1 ml-2">
               <Github size={16} color="#fff" />
               <span className="hidden md:inline-block">Sign in with GitHub</span>
               <span className="inline-block md:hidden">Sign In</span>
