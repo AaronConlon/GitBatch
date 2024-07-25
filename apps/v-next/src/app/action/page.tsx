@@ -20,8 +20,6 @@ export default async function Page() {
       })
     | null;
 
-  console.log('session:', session);
-
   if (session === null) {
     return (
       <div className="text-center py-48 flex flex-col gap-12 justify-center items-center">

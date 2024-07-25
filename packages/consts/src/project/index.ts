@@ -25,4 +25,7 @@ export const PROJECT = {
       },
     ],
   },
+  imgs: {
+    logo: 'https://de4965e.webp.li/blog-images/2024/07/848247cc0d9004068bb1c069f6ef10ee.jpeg',
+  },
 };

@@ -178,7 +178,6 @@ export default function Query({ accessToken }: IQueryProps) {
                     accessToken={accessToken}
                     selectedRows={data.filter((i) => selectedRows.includes(i.id))}
                     onSuccess={() => {
-                      console.log('delete');
                       setSelectedRows([]);
                       refresh();
                     }}

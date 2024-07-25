@@ -28,21 +28,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/shandian.svg" />
+        <link rel="shortcut icon" href={PROJECT.imgs.logo} />
       </head>
       <body className={`${roboto.className} flex flex-col min-h-screen w-full`}>
         <header className="flex justify-between max-w-full w-full md:w-[1200px] mx-auto py-4 px-8 xl:px-0 items-center">
           <Link href={'/'} className="flex items-center gap-4">
             <Image
-              src="/shandian.svg"
+              src={PROJECT.imgs.logo}
               alt="logo"
               width={64}
               height={64}
               className="hidden md:inline-block !rounded-full"
             />
-            <Image src="/shandian.svg" alt="logo" width={32} height={32} className="inline-block md:hidden" />
+            <Image
+              src={PROJECT.imgs.logo}
+              alt="logo"
+              width={32}
+              height={32}
+              className="inline-block md:hidden"
+            />
             <div className="fancy-text text-2xl xl:text-3xl font-semibold uppercase">Delete & Archive</div>
           </Link>
           <SignIn />

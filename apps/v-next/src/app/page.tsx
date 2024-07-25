@@ -1,24 +1,17 @@
 import Description from '@@/components/Description';
 import SocialMediaShare from '@@/components/SocialMediaShare';
 import { PROJECT } from '@shared/consts';
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata = {
+  title: PROJECT.name,
+  description: PROJECT.description
+};
 
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <Head>
-        <meta name="description" content={PROJECT.description} />
-        <meta property="og:title" content={PROJECT.name} />
-        <meta property="og:description" content={PROJECT.description} />
-        <meta property="og:image" content={PROJECT.ogImage} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={PROJECT.name} />
-        <meta name="twitter:description" content={PROJECT.description} />
-        <meta name="twitter:image" content={PROJECT.ogImage} />
-        {/* 其他你想要添加的meta标签 */}
-      </Head>
       {/* Basic Info */}
       <div className="bg-gray-50 group">
         <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
