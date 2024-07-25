@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function MorePage() {
   return (
     <div className="bg-gray-50 min-h-[30vw] border-b border-b-gray-100">
-      <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_640px] mx-auto items-center text-sm font-thin gap-4 gap-x-24">
+      <div className="md:w-[1200px] max-w-full p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_640px] mx-auto items-center text-sm font-thin gap-4 gap-x-24">
         <h1 className="text-5xl font-semibold py-12">MORE</h1>
         <p>
           I am tired of repetitive manual tasks, so I try to automate as much as possible. This project is an
@@ -29,7 +29,7 @@ export default function MorePage() {
         </div>
       </div>
       <div className="bg-white py-12">
-        <div className="md:w-[1200px] max-w-[100vw] mx-auto">
+        <div className="md:w-[1200px] max-w-full mx-auto">
           <div className="text-md grid grid-cols-1 sm:grid-cols-[auto_200px] gap-4">
             <p>Rest assured, the code is open source and will not produce any harmful behavior.</p>
           </div>

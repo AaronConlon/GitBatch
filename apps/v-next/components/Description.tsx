@@ -3,7 +3,7 @@ import { Filter, LucideTextSelection, Search, Undo2 } from 'lucide-react';
 export default function Description() {
   return (
     <div className="text-black font-semibold">
-      <div className="flex flex-col md:w-[1200px] max-w-[100vw] mx-auto py-16 px-8 md:px-4 gap-4 xl:gap-8">
+      <div className="flex flex-col md:w-[1200px] max-w-full mx-auto py-16 px-8 md:px-4 gap-4 xl:gap-8">
         <h1 className="text-3xl lg:text-5xl">See It In Action!</h1>
         <p className="w-[90%] xl:w-[60%] font-thin">
           Have unmaintained or forgotten repos lying around? We can help you find them, quickly and easily.

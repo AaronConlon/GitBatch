@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex flex-col">
       {/* Basic Info */}
       <div className="bg-gray-50 group">
-        <div className="md:w-[1200px] max-w-[100vw] p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
+        <div className="md:w-[1200px] max-w-full p-16 md:p-4 grid grid-cols-1 sm:grid-cols-[auto_420px] mx-auto items-center">
           <div className="">
             <h1 className="text-2xl md:text-4xl xl:text-5xl font-bold animate-flip-up animate-delay-500 fancy-text">
               {PROJECT.description}
