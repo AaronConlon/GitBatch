@@ -5,13 +5,10 @@ import { useRequest } from 'ahooks';
 import { Github } from 'lucide-react';
 
 export default function ContributeInfo() {
-  const repoInfo = useRequest(
-    () => GithubAPI.repo.getRepoInfoByName('AaronConlon', 'delete-github-repos-in-batches'),
-    {
-      cacheKey: 'repo-info',
-      manual: true
-    }
-  );
+  const repoInfo = useRequest(() => GithubAPI.repo.getRepoInfoByName('AaronConlon', 'GitBatch'), {
+    cacheKey: 'repo-info',
+    manual: true
+  });
 
   const userInfo = useRequest(() => GithubAPI.user.getUserInfoByName('AaronConlon'), {
     cacheKey: 'user-info'

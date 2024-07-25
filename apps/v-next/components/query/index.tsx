@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import ConfirmModal from '../ConfirmModal';
 import DeleteModal from './DeleteModal';
 import DescriptionModal from './DescriptionModal';
 
@@ -71,8 +72,28 @@ export default function Query({ accessToken }: IQueryProps) {
     {
       onSuccess: () => {
         setSelectedRows([]);
-        debugger;
       }
+    }
+  );
+
+  const deleteRepo = useRequest(
+    async ({ id, owner, name }: { id: number; name: string; owner: IGithubRepository['owner'] }) => {
+      try {
+        await GithubAPI.repo.removeRepo({
+          auth: accessToken,
+          repo: name,
+          owner: owner.login
+        });
+        toast.success('Delete the repository successfully');
+        data && mutate(data.filter((i) => i.id !== id));
+      } catch (error) {
+        // error info
+        console.error(error);
+        toast.error('Failed to delete the repository');
+      }
+    },
+    {
+      manual: true
     }
   );
 
@@ -296,31 +317,31 @@ export default function Query({ accessToken }: IQueryProps) {
                           accessToken={accessToken}
                           description={description}
                           repoItem={item}
+                          updateDescription={(text: string) => {
+                            data && mutate(data.map((i) => (i.id === id ? { ...i, description: text } : i)));
+                          }}
                         />
                       </Table.Td>
-                      <Table.Td className="hidden md:table-cell">{stargazers_count}</Table.Td>
-                      <Table.Td className="hidden md:table-cell">{forks_count}</Table.Td>
+                      <Table.Td className="hidden md:table-cell text-center">{stargazers_count}</Table.Td>
+                      <Table.Td className="hidden md:table-cell text-center">{forks_count}</Table.Td>
                       <Table.Td className="hidden md:table-cell">
-                        <button
-                          className="opacity-0 group-hover:opacity-100 text-red-500 pt-1 flex gap-1 items-center"
-                          onClick={async () => {
-                            try {
-                              await GithubAPI.repo.removeRepo({
-                                auth: accessToken,
-                                repo: name,
-                                owner: owner.login
-                              });
-                              toast.success('Delete the repository successfully');
-                              mutate(data.filter((i) => i.id !== id));
-                            } catch (error) {
-                              // error info
-                              console.error(error);
-                              toast.error('Failed to delete the repository');
-                            }
-                          }}
+                        <ConfirmModal
+                          title={
+                            <div>
+                              Delete: <span className="text-red-500 text-sm font-thin px-2">{name}</span>
+                            </div>
+                          }
+                          confirmFc={() =>
+                            deleteRepo.run({
+                              id,
+                              name,
+                              owner
+                            })
+                          }
+                          loading={deleteRepo.loading}
                         >
-                          <Trash2 size={16} />
-                        </button>
+                          <Trash2 size={16} className="opacity-0 group-hover:opacity-100 text-red-500 mt-2" />
+                        </ConfirmModal>
                       </Table.Td>
                     </Table.Tr>
                   );
@@ -328,7 +349,7 @@ export default function Query({ accessToken }: IQueryProps) {
             </Table.Tbody>
           </Table>
         ) : (
-          <div className="min-h-[50vh]">
+          <div className="min-h-[50vh] p-2">
             <Skeleton height={24} radius="xl" />
             <Skeleton height={24} mt={6} radius="xl" />
             <Skeleton height={24} mt={6} width="70%" radius="xl" />

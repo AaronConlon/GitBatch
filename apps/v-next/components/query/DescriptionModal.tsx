@@ -10,14 +10,20 @@ interface DeleteModalProps {
   accessToken: string;
   description?: string;
   repoItem: IGithubRepository;
+  updateDescription: (description: string) => void;
 }
 
-export default function DescriptionModal({ description = '', accessToken, repoItem }: DeleteModalProps) {
+export default function DescriptionModal({
+  description,
+  accessToken,
+  repoItem,
+  updateDescription
+}: DeleteModalProps) {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    setValue(description);
+    setValue(description ?? '');
   }, [description]);
 
   const { run, loading, cancel } = useRequest(
@@ -32,6 +38,8 @@ export default function DescriptionModal({ description = '', accessToken, repoIt
       });
       toast.success('Change the repository description successfully');
       setValue(value);
+      updateDescription(value);
+      close();
     },
     {
       manual: true,
@@ -65,7 +73,7 @@ export default function DescriptionModal({ description = '', accessToken, repoIt
       </Modal>
 
       <div className="cursor-pointer" onClick={open}>
-        {value}
+        {description && description.length ? description : '-'}
       </div>
     </>
   );

@@ -3,10 +3,10 @@
 
 # GitHub Repository Manager
 
-![GitHub stars](https://img.shields.io/github/stars/AaronConlon/delete-github-repos-in-batches?style=social)
-![GitHub forks](https://img.shields.io/github/forks/AaronConlon/delete-github-repos-in-batches?style=social)
-![GitHub issues](https://img.shields.io/github/issues/AaronConlon/delete-github-repos-in-batches)
-![GitHub license](https://img.shields.io/github/license/AaronConlon/delete-github-repos-in-batches)
+![GitHub stars](https://img.shields.io/github/stars/AaronConlon/GitBatch?style=social)
+![GitHub forks](https://img.shields.io/github/forks/AaronConlon/GitBatch?style=social)
+![GitHub issues](https://img.shields.io/github/issues/AaronConlon/GitBatch)
+![GitHub license](https://img.shields.io/github/license/AaronConlon/GitBatch)
 ![Node.js Version](https://img.shields.io/badge/node-v20.14.0-brightgreen)
 ![Rush.js](https://img.shields.io/badge/rushjs-✓-blue)
 ![Next.js](https://img.shields.io/badge/nextjs-✓-black)
@@ -39,12 +39,12 @@ GitHub Repository Manager 是一个强大的工具，用于批量管理您的 Gi
 
 1. 克隆仓库：
    ```
-   git clone https://github.com/AaronConlon/delete-github-repos-in-batches.git
+   git clone https://github.com/AaronConlon/GitBatch.git
    ```
 
 2. 进入项目目录：
    ```
-   cd delete-github-repos-in-batches
+   cd GitBatch
    ```
 
 3. 安装依赖：

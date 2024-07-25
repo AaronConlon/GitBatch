@@ -4,7 +4,7 @@ export const PROJECT = {
   version: '0.0.1',
   ogImage:
     'https://de4965e.webp.li/blog-images/2024/07/8c71d1b5dc982bf1dbe091d162f2bf46.png',
-  sourceCode: 'https://github.com/AaronConlon/delete-github-repos-in-batches',
+  sourceCode: 'https://github.com/AaronConlon/GitBatch',
   author: {
     name: 'Aaron Conlon',
     email: 'rivenqinyy@gmail.com',
