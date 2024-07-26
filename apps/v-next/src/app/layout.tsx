@@ -77,7 +77,7 @@ export default function RootLayout({
           <div className="grid gap-8 md:gap-24 pt-6 grid-cols-1 md:grid-cols-3 justify-center max-w-full md:w-[1200px] mx-auto">
             <div className="flex flex-col gap-4">
               <div className="text-lg">
-                Created by <span className="text-blue-500">{PROJECT.author.name}</span>
+                Created by @<span className="text-blue-500">{PROJECT.author.name}</span>
               </div>
               <p className="text-sm text-gray-50 w-[80%]">
                 Quick and easy to use.Source code licensed under MIT.

@@ -28,4 +28,4 @@ jobs:
         run: pm2 restart v-next
       - name: Nofity to ntfy
         if: always()
-        run: curl -d "v-next project restart success!!!" ntfy.sh/aaron-conlon
+        run: curl -d "🚀 v-next project restart success!!!" ntfy.sh/aaron-conlon
