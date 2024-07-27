@@ -19,6 +19,8 @@ jobs:
         node-version: [20.14.0]
     steps:
       - uses: actions/checkout@v4
+      - run: git pull
+
       - run: rush install
       - run: rush build
         # continue-on-error: true
