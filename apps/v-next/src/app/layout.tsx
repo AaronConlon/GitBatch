@@ -40,13 +40,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="shortcut icon" href={PROJECT.imgs.logo} />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PEXEQY2N4L"></script>
-        <script>
-          {`window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-PEXEQY2N4L');`}
-        </script>
+        <script async src="https://cdn.seline.so/seline.js" data-token="b60952ddcb31bbd"></script>
       </head>
       <body className={`${roboto.className} flex flex-col min-h-screen w-full`}>
         <header className="flex justify-between max-w-full w-full md:w-[1200px] mx-auto py-4 px-8 xl:px-0 items-center">
