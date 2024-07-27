@@ -1,61 +1,55 @@
 'use client';
-import { Button, List, Modal, rem, ThemeIcon } from '@mantine/core';
+import { Button, List, Modal, rem, ThemeIcon, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { cn } from '@shared/fc';
 import { GithubAPI, IUserRepoList } from '@shared/github-api';
 import { useRequest } from 'ahooks';
-import { CheckCircle, RefreshCcw, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { RefreshCcw, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface DeleteModalProps {
   selectedRows: IUserRepoList;
-  onSuccess: (ids: number[]) => void;
+  removeItem: (id: number) => void;
   accessToken: string;
 }
 
-export default function DeleteModal({ selectedRows, onSuccess, accessToken }: DeleteModalProps) {
+export default function DeleteModal({ selectedRows, removeItem, accessToken }: DeleteModalProps) {
   const [opened, { open, close }] = useDisclosure(false);
-  const [deletedIds, setDeletedIds] = useState<number[]>([]);
 
   const { run, loading, cancel } = useRequest(
     () => {
+      if (selectedRows.length === 0) {
+        close();
+      }
+
       return Promise.allSettled(
-        selectedRows
-          .filter((i) => !deletedIds.includes(i.id))
-          .map((i) =>
-            GithubAPI.repo
-              .removeRepo({
-                auth: accessToken,
-                owner: i.owner.login,
-                repo: i.name
-              })
-              .then(() => {
-                setDeletedIds((prev) => {
-                  if (prev.includes(i.id)) {
-                    return prev;
-                  }
-                  return [...prev, i.id];
-                });
-              })
-              .catch(() => {
-                toast.error(`Failed to delete ${i.full_name}`);
-              })
-          )
+        selectedRows.map((i) =>
+          GithubAPI.repo
+            .removeRepo({
+              auth: accessToken,
+              owner: i.owner.login,
+              repo: i.name
+            })
+            .then(() => {
+              toast.success(`Deleted ${i.full_name}`);
+              removeItem(i.id);
+            })
+            .catch(() => {
+              toast.error(`Failed to delete ${i.full_name}`);
+            })
+        )
       );
     },
     {
       manual: true,
       onSuccess: () => {
-        console.log('deleted:', deletedIds);
-        onSuccess(deletedIds);
+        close();
       }
     }
   );
 
   const onClose = () => {
     cancel();
-    setDeletedIds([]);
     close();
   };
 
@@ -85,24 +79,7 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
               }
             >
               {selectedRows.map((repo) => (
-                <List.Item
-                  key={repo.id}
-                  icon={
-                    deletedIds.includes(repo.id) ? (
-                      <ThemeIcon color="red" size={24} radius="xl">
-                        <CheckCircle style={{ width: rem(16), height: rem(16) }} />
-                      </ThemeIcon>
-                    ) : undefined
-                  }
-                >
-                  <span
-                    className={cn({
-                      'line-through': deletedIds.includes(repo.id)
-                    })}
-                  >
-                    {repo.full_name}
-                  </span>
-                </List.Item>
+                <List.Item key={repo.id}>{repo.full_name}</List.Item>
               ))}
             </List>
           </div>
@@ -114,40 +91,30 @@ export default function DeleteModal({ selectedRows, onSuccess, accessToken }: De
             >
               Restore tips
             </a>
-            <Button size="sm" onClick={onClose}>
-              {deletedIds.map((i) => i.toString()).join('-') ===
-              selectedRows.map((i) => i.id.toString()).join('-')
-                ? 'Close'
-                : 'Cancel'}
+            <Button size="sm" onClick={onClose} variant="outline">
+              Cancel
             </Button>
-            <Button
-              onClick={run}
-              size="sm"
-              variant="outline"
-              color="red"
-              disabled={
-                deletedIds.map((i) => i.toString()).join('-') ===
-                selectedRows.map((i) => i.id.toString()).join('-')
-              }
-            >
+            <Button onClick={run} size="sm" color="red">
               Delete
             </Button>
           </div>
         </div>
       </Modal>
 
-      <button
-        onClick={() => {
-          if (selectedRows.length) {
-            open();
-          }
-        }}
-        className={cn('text-red-500 pt-1 flex gap-1 items-center', {
-          'opacity-0': selectedRows.length === 0
-        })}
-      >
-        <Trash2 size={22} />
-      </button>
+      <Tooltip label="batch delete">
+        <button
+          onClick={() => {
+            if (selectedRows.length) {
+              open();
+            }
+          }}
+          className={cn('text-red-500 pt-1 flex gap-1 items-center', {
+            'opacity-0': selectedRows.length === 0
+          })}
+        >
+          <Trash2 size={22} />
+        </button>
+      </Tooltip>
     </>
   );
 }

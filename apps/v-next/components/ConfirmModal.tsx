@@ -15,14 +15,29 @@ export default function ConfirmModal({ children, confirmFc, title, loading }: Co
         <div className="p-6 w-[300px] text-center">Are you sure?</div>
         <div className="mt-4 flex justify-center gap-2 items-center">
           <Button variant="outline" size="sm" onClick={close}>
-            Cancel
+            No
           </Button>
-          <Button onClick={confirmFc} size="sm" disabled={loading} loading={loading}>
-            Confirm
+          <Button
+            onClick={() => {
+              close();
+              confirmFc();
+            }}
+            size="sm"
+            disabled={loading}
+            loading={loading}
+          >
+            Yes
           </Button>
         </div>
       </Modal>
-      <button onClick={open}>{children}</button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          open();
+        }}
+      >
+        {children}
+      </button>
     </>
   );
 }

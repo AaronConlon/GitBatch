@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import ConfirmModal from '../ConfirmModal';
+import ArchiveModal from './ArchiveModal';
 import DeleteModal from './DeleteModal';
 import DescriptionModal from './DescriptionModal';
 
@@ -112,7 +113,7 @@ export default function Query({ accessToken }: IQueryProps) {
         })
         .then(() => {
           toast.success('Change the repository privacy successfully');
-          mutate(data!.map((i) => (i.id === repository.id ? { ...i, private: !i.private } : i)));
+          mutate((data) => data!.map((i) => (i.id === repository.id ? { ...i, private: !i.private } : i)));
         });
     } catch (error) {
       // error info
@@ -125,19 +126,16 @@ export default function Query({ accessToken }: IQueryProps) {
     try {
       if (repository.archived === archived) return;
       const { name, owner } = repository;
-      await GithubAPI.repo
-        .patchRepo({
-          auth: accessToken,
-          repo: name,
-          owner: owner.login,
-          schema: {
-            archived: !repository.archived
-          }
-        })
-        .then(() => {
-          toast.success('Change the repository privacy successfully');
-          mutate(data!.map((i) => (i.id === repository.id ? { ...i, archived: !i.archived } : i)));
-        });
+      await GithubAPI.repo.patchRepo({
+        auth: accessToken,
+        repo: name,
+        owner: owner.login,
+        schema: {
+          archived: !repository.archived
+        }
+      });
+      toast.success('Change the repository privacy successfully');
+      mutate((data) => data!.map((i) => (i.id === repository.id ? { ...i, archived: !i.archived } : i)));
     } catch (error) {
       // error info
       console.error(error);
@@ -189,24 +187,33 @@ export default function Query({ accessToken }: IQueryProps) {
           <Search size={16} className="mr-1" />
           Search
         </Button>
+        {/* it's debug code... */}
         <Button variant="outline" onClick={generateTempRepo} className="!hidden">
           Create temp repos
         </Button>
       </form>
+
       <div className="my-4 relative bg-white">
         {data && !loading ? (
           <Table>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>
-                  <DeleteModal
-                    accessToken={accessToken}
-                    selectedRows={data.filter((i) => selectedRows.includes(i.id))}
-                    onSuccess={(ids: number[]) => {
-                      setSelectedRows((prev) => prev.filter((i) => !ids.includes(i)));
-                      mutate(data.filter((i) => !ids.includes(i.id)));
-                    }}
-                  />
+                  <div className="flex items-center min-w-12">
+                    <DeleteModal
+                      accessToken={accessToken}
+                      selectedRows={data.filter((i) => selectedRows.includes(i.id))}
+                      removeItem={(id: number) => {
+                        setSelectedRows(selectedRows.filter((i) => i !== id));
+                        mutate((data) => data!.filter((i) => i.id !== id));
+                      }}
+                    />
+                    <ArchiveModal
+                      accessToken={accessToken}
+                      selectedRows={data.filter((i) => selectedRows.includes(i.id))}
+                      mutate={mutate}
+                    />
+                  </div>
                 </Table.Th>
                 <Table.Th>Full Name</Table.Th>
                 <Table.Th>Private</Table.Th>
@@ -295,7 +302,7 @@ export default function Query({ accessToken }: IQueryProps) {
                         {!archived && (
                           <Switch
                             onLabel="YES"
-                            defaultChecked={isPrivate}
+                            checked={isPrivate}
                             disabled={archived}
                             onChange={(e) => {
                               changeRepoIsPrivate(data.find((i) => i.id === id)!, e.target.checked);
@@ -306,7 +313,7 @@ export default function Query({ accessToken }: IQueryProps) {
                       <Table.Td>
                         <Switch
                           onLabel="YES"
-                          defaultChecked={archived}
+                          checked={archived}
                           onChange={(e) => {
                             changeRepoArchived(data.find((i) => i.id === id)!, e.target.checked);
                           }}
