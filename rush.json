@@ -416,6 +416,11 @@
       "packageName": "@shared/consts",
       "projectFolder": "packages/consts",
       "tags": ["consts"]
+    },
+    {
+      "packageName": "v-git-batch",
+      "projectFolder": "apps/v-git-batch",
+      "tags": ["chrome-extend"]
     }
   ]
 }

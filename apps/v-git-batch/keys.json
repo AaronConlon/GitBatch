@@ -1,0 +1,9 @@
+{
+  "$schema": "https://raw.githubusercontent.com/PlasmoHQ/bpp/v3/keys.schema.json",
+  "chrome": {
+    "clientId": "123",
+    "refreshToken": "789",
+    "extId": "abcd",
+    "clientSecret": "efgh"
+  }
+}
