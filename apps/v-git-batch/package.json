@@ -1,7 +1,7 @@
 {
   "name": "v-git-batch",
   "displayName": "Batch Delete GitHub repos",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "A simple chrome extension to batch delete your github repos.",
   "author": "Aaron Conlon. <rivenqinyy@gmail.com>",
   "scripts": {
@@ -10,6 +10,7 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/messaging": "^0.6.2",
     "plasmo": "0.88.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
