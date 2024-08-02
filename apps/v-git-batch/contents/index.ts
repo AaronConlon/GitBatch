@@ -26,8 +26,6 @@ const createCheckbox = (parentNode: HTMLElement) => {
       name: "check-login"
     })
 
-    console.log("init check resp:", resp)
-
     const { logged_in, isAuth } = resp
 
     if (logged_in) {

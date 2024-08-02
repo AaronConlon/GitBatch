@@ -1,33 +1,57 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# Batch Delete GitHub Repos
 
-## Getting Started
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/feicmldgdemjfahddoplbbfhmkdbbkho.svg)](https://chromewebstore.google.com/detail/batch-delete-github-repos/feicmldgdemjfahddoplbbfhmkdbbkho)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/feicmldgdemjfahddoplbbfhmkdbbkho.svg)](https://chromewebstore.google.com/detail/batch-delete-github-repos/feicmldgdemjfahddoplbbfhmkdbbkho)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/feicmldgdemjfahddoplbbfhmkdbbkho.svg)](https://chromewebstore.google.com/detail/batch-delete-github-repos/feicmldgdemjfahddoplbbfhmkdbbkho)
+[![Node.js Version](https://img.shields.io/badge/node-v20.14.0-green.svg)](https://nodejs.org/)
+[![Plasmo](https://img.shields.io/badge/built%20with-plasmo-8E44AD.svg)](https://www.plasmo.com/)
 
-First, run the development server:
+Batch Delete GitHub Repos is a Chrome extension that allows GitHub users to easily select and delete multiple repositories in one click.
+
+[中文文档](./README.zh.md)
+
+## Features
+
+- Bulk delete GitHub repositories with a single click
+- Simple GitHub authentication process, no manual access token creation required
+- User-friendly interface
+
+## Installation
+
+Visit the [Chrome Web Store](https://chromewebstore.google.com/detail/batch-delete-github-repos/feicmldgdemjfahddoplbbfhmkdbbkho) and add the extension to your Chrome browser.
+
+## How to Use
+
+1. After installing the extension, navigate to your GitHub repositories page
+2. Click the authentication button provided by the extension to authenticate with GitHub
+3. Select the repositories you want to delete
+4. Click the delete button to perform the bulk deletion
+
+## Development
+
+This project is developed using Node.js v20.14.0 and the Plasmo framework.
 
 ```bash
-pnpm dev
-# or
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 ```
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+## More Features
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+If you need more batch management operations for GitHub repositories, please visit our website: [Batch Manage GitHub Repos](https://batch-manage-github-repos.i5lin.top)
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
+## Contributing
 
-## Making production build
+Feel free to fork this repository and submit pull requests. If you like this project, please give us a star!
 
-Run the following:
+## License
 
-```bash
-pnpm build
-# or
-npm run build
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+## Feedback
 
-## Submit to the webstores
+If you have any questions or suggestions, please feel free to open an issue in the GitHub repository or leave a comment in the Chrome Web Store.
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!

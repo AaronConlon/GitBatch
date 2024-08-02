@@ -17,9 +17,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     url: req.targetOrigin,
     domain: "github.com"
   })
-  console.log("cookie", cookies)
   const logged_in_item = cookies.find((i) => i.name === "logged_in")
-  console.log(logged_in_item)
   const logged_in = logged_in_item?.value === "yes"
   const isValid = await isTokenValid(access_token)
 
@@ -27,8 +25,6 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     logged_in: logged_in_item?.value === "yes",
     isAuth: isValid && logged_in
   }
-
-  console.log("check login message:", message)
 
   res.send(message)
 }
