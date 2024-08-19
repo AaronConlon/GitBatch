@@ -1,6 +1,7 @@
 import Description from '@@/components/Description';
 import SocialMediaShare from '@@/components/SocialMediaShare';
 import { PROJECT } from '@shared/consts';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,6 +25,18 @@ export default function Home() {
                 delete
               </span>{' '}
               multiple GitHub repos.
+            </p>
+            <p className="text-gray-500 mt-2 animate-pulse">
+              Yes!You can use my chrome extension too!{' '}
+              <Link
+                className="text-cyan-500"
+                target="_blank"
+                href={
+                  'https://chromewebstore.google.com/detail/batch-delete-github-repos/feicmldgdemjfahddoplbbfhmkdbbkho'
+                }
+              >
+                <ArrowRight size={24} className="inline-block" />
+              </Link>
             </p>
             <div className="flex mt-8 gap-6 items-center">
               <Link
