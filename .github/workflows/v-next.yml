@@ -19,7 +19,9 @@ jobs:
         node-version: [20.14.0]
     steps:
       - uses: actions/checkout@v4
-      - run: git pull
+        with:
+          fetch-depth: 0
+      - run: git pull origin master
 
       - run: bash ./update.sh
       - name: Nofity to ntfy

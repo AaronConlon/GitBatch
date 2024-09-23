@@ -20,7 +20,7 @@ export const PROJECT = {
       },
       {
         name: 'blog',
-        url: 'https://blog-dev27149.vercel.app/',
+        url: 'https://i5lin.top/blog',
       },
     ],
   },
